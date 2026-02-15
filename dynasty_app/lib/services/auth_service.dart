@@ -35,4 +35,12 @@ class AuthService {
   Future<void> signOut() async {
     await _supabase.auth.signOut();
   }
+
+  // Resend Verification Email
+  Future<void> resendVerificationEmail(String email) async {
+    await _supabase.auth.resend(
+      type: OtpType.signup,
+      email: email,
+    );
+  }
 }

@@ -52,10 +52,27 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
         password: _passwordController.text.trim(),
       );
     } on AuthException catch (e) {
+      debugPrint('Auth Error: ${e.message}'); // DEBUG PRINT
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message), backgroundColor: Colors.red),
-        );
+        if (e.message.toLowerCase().contains('email not confirmed') || 
+            e.message.toLowerCase().contains('email not verified')) {
+           ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Email not verified. Error: ${e.message}'), // Show error for debug
+              backgroundColor: Colors.orange,
+              action: SnackBarAction(
+                label: 'Resend',
+                textColor: Colors.white,
+                onPressed: () => _resendVerificationEmail(),
+              ),
+              duration: const Duration(seconds: 10),
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error: ${e.message}'), backgroundColor: Colors.red),
+          );
+        }
       }
     } catch (e) {
       if (mounted) {
@@ -65,6 +82,23 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
       }
     } finally {
       if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _resendVerificationEmail() async {
+    try {
+      await _authService.resendVerificationEmail(_emailController.text.trim());
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Verification email sent!'), backgroundColor: Colors.green),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
+        );
+      }
     }
   }
 
