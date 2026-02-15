@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DynastyX Solutions - Our Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3617cf",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#141121",
+                        "surface-dark": "#1c1830",
+                        "accent-dark": "#251f42"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<!-- iOS Status Bar Spacer -->
+<div class="h-12 w-full bg-background-light dark:bg-background-dark sticky top-0 z-50"></div>
+<!-- Sticky Header & Search Area -->
+<header class="sticky top-12 z-50 bg-background-light/80 dark:bg-background-dark/80 glass-header px-5 pb-4">
+<div class="flex items-center justify-between py-4">
+<h1 class="text-3xl font-bold tracking-tight">Our Services</h1>
+<button class="p-2 rounded-full bg-primary/10 text-primary">
+<span class="material-icons text-xl">notifications</span>
+</button>
+</div>
+<!-- Search Bar -->
+<div class="relative mt-2">
+<span class="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full h-12 pl-12 pr-4 bg-white dark:bg-surface-dark border-none rounded-xl text-sm focus:ring-2 focus:ring-primary shadow-sm placeholder-slate-400" placeholder="Search services..." type="text"/>
+</div>
+<!-- Filter Categories -->
+<div class="flex gap-3 mt-5 overflow-x-auto hide-scrollbar pb-1">
+<button class="px-5 py-2 rounded-full bg-primary text-white text-xs font-semibold whitespace-nowrap">All Services</button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400 text-xs font-medium whitespace-nowrap border border-slate-200 dark:border-primary/20">Design</button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400 text-xs font-medium whitespace-nowrap border border-slate-200 dark:border-primary/20">Development</button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400 text-xs font-medium whitespace-nowrap border border-slate-200 dark:border-primary/20">Marketing</button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-surface-dark text-slate-500 dark:text-slate-400 text-xs font-medium whitespace-nowrap border border-slate-200 dark:border-primary/20">Cloud</button>
+</div>
+</header>
+<!-- Content Area -->
+<main class="px-5 pt-4 pb-32 space-y-5">
+<!-- Service Card 1: UI/UX Design -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-xl shadow-sm border border-slate-100 dark:border-primary/10 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-5">
+<span class="material-icons text-3xl">palette</span>
+</div>
+<h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                Creating intuitive, user-centric interfaces that drive engagement and enhance user satisfaction through data-driven design patterns.
+            </p>
+<a class="inline-flex items-center text-primary font-semibold text-sm group-hover:underline" href="#">
+                Learn More
+                <span class="material-icons text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<!-- Service Card 2: Software Development -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-xl shadow-sm border border-slate-100 dark:border-primary/10 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-5">
+<span class="material-icons text-3xl">code</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Custom Software</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                High-performance web and mobile applications tailored to your business needs, built with cutting-edge technology stacks.
+            </p>
+<a class="inline-flex items-center text-primary font-semibold text-sm group-hover:underline" href="#">
+                Learn More
+                <span class="material-icons text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<!-- Featured Section with Image -->
+<div class="relative w-full h-48 rounded-xl overflow-hidden mb-8">
+<img alt="Business Growth" class="w-full h-full object-cover" data-alt="Abstract glowing blue data visualization lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwP5tl7X85v2zGPLywusC-brTYdY30H0SidVO9jFdnK4xNibWHWy5kyQRmiGdLvJTom7FvLawK9yyWhI2gFdxIHHgvt55ln9k_J_WV3AuoP8DB-QnXP70Amr6k0o6W8E2RuonkB6AfcGn2YcdwyVbz70x32JJmOm9G4KtWz4JUsB4VOMbkvvfm67JUJ_F0pbk17KjsGtexUiLBQu81SNqbYf9HEVyfWCrUU1uyuSZe8pqfYctYMKVSh3XqmxMW1WwbvZQPJsna38M"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-5">
+<span class="text-[10px] uppercase tracking-widest text-primary font-bold mb-1">Scale Fast</span>
+<h4 class="text-white font-bold text-lg">Premium Cloud Migration</h4>
+<p class="text-white/70 text-xs">Transform your legacy systems today.</p>
+</div>
+</div>
+<!-- Service Card 3: Digital Marketing -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-xl shadow-sm border border-slate-100 dark:border-primary/10 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-5">
+<span class="material-icons text-3xl">campaign</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Digital Marketing</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                Strategic SEO, SEM, and social media campaigns designed to scale your brand reach and maximize your return on investment.
+            </p>
+<a class="inline-flex items-center text-primary font-semibold text-sm group-hover:underline" href="#">
+                Learn More
+                <span class="material-icons text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<!-- Service Card 4: AI & Automation -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-xl shadow-sm border border-slate-100 dark:border-primary/10 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-5">
+<span class="material-icons text-3xl">smart_toy</span>
+</div>
+<h3 class="text-xl font-bold mb-2">AI &amp; Automation</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                Integrating artificial intelligence to streamline workflows and unlock predictive insights for your enterprise data.
+            </p>
+<a class="inline-flex items-center text-primary font-semibold text-sm group-hover:underline" href="#">
+                Learn More
+                <span class="material-icons text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+</main>
+<!-- iOS Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-surface-dark/90 glass-header border-t border-slate-200 dark:border-white/5 pb-8 pt-3 px-6 z-50">
+<div class="flex items-center justify-between max-w-md mx-auto">
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-icons text-2xl">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-icons text-2xl">grid_view</span>
+<span class="text-[10px] font-medium">Services</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-icons text-2xl">work_outline</span>
+<span class="text-[10px] font-medium">Portfolio</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-icons text-2xl">chat_bubble_outline</span>
+<span class="text-[10px] font-medium">Consult</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-icons text-2xl">person_outline</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</div>
+<!-- iOS Home Indicator -->
+<div class="w-32 h-1 bg-slate-300 dark:bg-slate-700 rounded-full mx-auto mt-6"></div>
+</nav>
+</body></html>

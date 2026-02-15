@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact &amp; Inquiry | DynastyX Solutions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3617cf",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#141121",
+                        "surface-dark": "#1c192d",
+                        "border-dark": "#2d2a45",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(54, 23, 207, 0.3);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Mobile Status Bar Spacer -->
+<div class="h-12 w-full bg-background-light dark:bg-background-dark sticky top-0 z-50 flex items-center justify-between px-6">
+<span class="text-sm font-semibold">9:41</span>
+<div class="flex items-center space-x-2">
+<span class="material-icons text-xs">signal_cellular_alt</span>
+<span class="material-icons text-xs">wifi</span>
+<span class="material-icons text-xs">battery_full</span>
+</div>
+</div>
+<!-- Header Navigation -->
+<header class="px-6 py-4 flex items-center justify-between sticky top-12 z-40 bg-background-light/80 dark:bg-background-dark/80 ios-blur">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-surface-dark transition-colors">
+<span class="material-icons text-xl">arrow_back_ios_new</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Contact</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-surface-dark transition-colors">
+<span class="material-icons text-xl">more_horiz</span>
+</button>
+</header>
+<main class="px-6 pb-20">
+<!-- Hero Section -->
+<section class="mt-4 mb-8">
+<h2 class="text-3xl font-extrabold mb-2 bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">Start a Project</h2>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed">Let's build something extraordinary together. Fill out the form below and our team will get back to you within 24 hours.</p>
+</section>
+<!-- Inquiry Form -->
+<form action="#" class="space-y-6">
+<div class="space-y-2">
+<label class="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1" for="name">Full Name</label>
+<input class="w-full px-5 py-4 rounded-xl border-0 bg-white dark:bg-surface-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:ring-2 focus:ring-primary transition-all" id="name" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1" for="email">Work Email</label>
+<input class="w-full px-5 py-4 rounded-xl border-0 bg-white dark:bg-surface-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:ring-2 focus:ring-primary transition-all" id="email" placeholder="john@company.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1">Service Interest</label>
+<div class="flex overflow-x-auto gap-2 pb-2 hide-scrollbar">
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary text-white text-sm font-medium border border-primary shadow-lg shadow-primary/20" type="button">Software Dev</button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full bg-white dark:bg-surface-dark text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-border-dark" type="button">Digital Marketing</button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full bg-white dark:bg-surface-dark text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-border-dark" type="button">Branding</button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full bg-white dark:bg-surface-dark text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-border-dark" type="button">SEO</button>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1" for="message">Project Details</label>
+<textarea class="w-full px-5 py-4 rounded-xl border-0 bg-white dark:bg-surface-dark text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:ring-2 focus:ring-primary transition-all resize-none" id="message" placeholder="Tell us about your goals, timeline, and budget..." rows="4"></textarea>
+</div>
+<button class="w-full py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl shadow-xl shadow-primary/30 transition-all active:scale-95 flex items-center justify-center space-x-2" type="submit">
+<span>Send Inquiry</span>
+<span class="material-icons text-lg">send</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="flex items-center my-12">
+<div class="flex-1 h-px bg-slate-200 dark:bg-border-dark"></div>
+<span class="px-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Or connect directly</span>
+<div class="flex-1 h-px bg-slate-200 dark:bg-border-dark"></div>
+</div>
+<!-- Direct Contact Grid -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<a class="p-5 rounded-2xl bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark flex flex-col items-start space-y-3 active:scale-95 transition-all" href="tel:+1234567890">
+<div class="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+<span class="material-icons text-primary">call</span>
+</div>
+<div>
+<p class="text-sm font-bold">Call Us</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">+1 (555) 000-1234</p>
+</div>
+</a>
+<a class="p-5 rounded-2xl bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark flex flex-col items-start space-y-3 active:scale-95 transition-all" href="mailto:hello@dynastyx.com">
+<div class="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+<span class="material-icons text-primary">email</span>
+</div>
+<div>
+<p class="text-sm font-bold">Email Us</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">hello@dynastyx.com</p>
+</div>
+</a>
+</div>
+<!-- Location Section -->
+<div class="rounded-2xl overflow-hidden bg-white dark:bg-surface-dark border border-slate-100 dark:border-border-dark shadow-sm">
+<div class="h-48 relative overflow-hidden">
+<img alt="Map view" class="w-full h-full object-cover opacity-80" data-alt="Modern dark-themed digital map showing office location" data-location="San Francisco, USA" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnSq6stjt48M0tf3GM7JVTRYzfU450UkV68z38WQHnOAv0KC4ZEl-gYspGXlQcYlTSbWc9T78i2T9t8mtydKrNeefrQhbh9nQd6WUoMJWIfwslo7X41PCKsazfh1U6apAV0qm1LJvKopeNh4kEe6L6FbI2cZoKQk4JMzBCI01_RpCX0MtolVugMOjJazDcPp85PRrtBl7PhY_ANTgIcZWhfFtcUGHr1xdsMlxf5Z-yojtf8i7uBdeEw4bLQncWPdefwYPsQZ8u43Q"/>
+<div class="absolute inset-0 bg-primary/10 pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="relative">
+<div class="absolute -inset-4 bg-primary/30 rounded-full animate-pulse"></div>
+<span class="material-icons text-primary text-4xl relative z-10">location_on</span>
+</div>
+</div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-center">
+<div>
+<h4 class="font-bold text-sm">Visit Office</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                            123 Tech Plaza, Innovation District<br/>
+                            San Francisco, CA 94103
+                        </p>
+</div>
+<button class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/20 active:scale-90 transition-all">
+<span class="material-icons">directions</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Info -->
+<div class="mt-12 text-center">
+<p class="text-xs text-slate-400 uppercase tracking-widest font-semibold">Available Mon — Fri, 9am — 6pm PST</p>
+<div class="flex justify-center space-x-6 mt-6">
+<a class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-surface-dark text-slate-500 dark:text-slate-400" href="#">
+<span class="material-icons text-sm">public</span>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-surface-dark text-slate-500 dark:text-slate-400" href="#">
+<span class="material-icons text-sm">groups</span>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-surface-dark text-slate-500 dark:text-slate-400" href="#">
+<span class="material-icons text-sm">alternate_email</span>
+</a>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (iOS Style) -->
+<nav class="fixed bottom-0 left-0 right-0 h-20 bg-white/80 dark:bg-surface-dark/80 ios-blur border-t border-slate-200 dark:border-border-dark flex items-center justify-around px-6 pb-4">
+<button class="flex flex-col items-center space-y-1 text-slate-400">
+<span class="material-icons">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center space-y-1 text-slate-400">
+<span class="material-icons">grid_view</span>
+<span class="text-[10px] font-bold">Services</span>
+</button>
+<button class="flex flex-col items-center space-y-1 text-slate-400">
+<span class="material-icons">work_outline</span>
+<span class="text-[10px] font-bold">Portfolio</span>
+</button>
+<button class="flex flex-col items-center space-y-1 text-primary">
+<span class="material-icons">chat_bubble</span>
+<span class="text-[10px] font-bold">Contact</span>
+</button>
+</nav>
+<!-- iOS Indicator -->
+<div class="fixed bottom-1 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-800/20 dark:bg-white/20 rounded-full z-50"></div>
+</body></html>

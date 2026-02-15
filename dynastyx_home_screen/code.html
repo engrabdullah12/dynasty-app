@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DynastyX Home Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3617cf",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#141121",
+                        "accent-cyan": "#00f5ff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-effect {
+            background: rgba(20, 17, 33, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(54, 23, 207, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Status Bar Spacer (iOS Style) -->
+<div class="h-12 w-full bg-background-light dark:bg-background-dark sticky top-0 z-50 flex items-center justify-between px-6">
+<div class="font-bold text-xl tracking-tighter text-primary">Dynasty<span class="text-accent-cyan">X</span></div>
+<div class="flex items-center space-x-4">
+<button class="p-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary">
+<span class="material-icons text-sm">notifications</span>
+</button>
+<button class="w-8 h-8 rounded-full overflow-hidden border-2 border-primary/30">
+<img alt="User Profile" data-alt="Close up portrait of a professional male user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOE9QN0kC9VOToe5zlJ8WvCFZ1jNaEljtR-KH7PepfGceIRWQuMk--fKboz5U5qhb-7qD7RNCe3mybnjnwnsIIOUAdrQATVxa16fFG7poBKsuh-0XvcRifWJiDxdEzD-AeI2liJj7vmoNYwZgXWjvkIf-ZUt6td6f3ktKEQGGgzjYE8ukdntkWJyLHTnmFfT4eQjA9mS4gPZi5lB6V7sCWMz7xsLsJfU_-_2uNbvboBiyGoRiBjPbkXqeviT-Mr-juRQOKa-pe7WU"/>
+</button>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-grow pb-24">
+<!-- Hero Section -->
+<section class="relative h-[480px] flex flex-col justify-end px-6 pb-12 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Hero Background" class="w-full h-full object-cover" data-alt="Abstract dark blue 3D geometric shapes with neon lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQIBJTww-C7ct_Q-Nu4PQc9jzb-89em_B8ifXzSR2JiYVwbTlQDD_wWF8yUjUxoS2mSVHX28_H3PpgBBAxSLUL9NZGwV8neFiihAr5_1CGBX4mt1wHISWLdeqwb7yG0P-UwNXclT_iyFEPKHeT_kmSmmfhv8WO8FSrjz8TEbEHE5qzs2w77KfymvWsEOS-p1PGgoxo9STZAihElR7Lzq1_LPMG-BFincR7y5BWwt8LoTIyED07L74IGjkq0dvuTePz-MOOM3B3st0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent"></div>
+</div>
+<div class="relative z-10 space-y-4">
+<div class="inline-block px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-accent-cyan text-[10px] font-bold uppercase tracking-widest">
+                    Digital Excellence
+                </div>
+<h1 class="text-4xl font-extrabold leading-tight tracking-tight text-white">
+                    Innovate.<br/>
+                    Integrate.<br/>
+<span class="text-primary text-glow">Impact.</span>
+</h1>
+<p class="text-slate-400 text-sm max-w-xs leading-relaxed">
+                    Crafting future-ready digital solutions for ambitious brands worldwide.
+                </p>
+<div class="flex items-center space-x-3 pt-4">
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all shadow-lg shadow-primary/25">
+                        Get a Quote
+                    </button>
+<button class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all border border-white/20">
+                        Our Services
+                    </button>
+</div>
+</div>
+</section>
+<!-- About Us Section -->
+<section class="px-6 py-8">
+<div class="glass-effect p-6 rounded-2xl">
+<h2 class="text-xs font-bold text-primary uppercase tracking-widest mb-2">Our Mission</h2>
+<h3 class="text-xl font-bold mb-3 text-white">Pioneering Progress</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                    At DynastyX, we blend creative vision with technical precision. Our team of expert architects and strategists are dedicated to transforming your business challenges into digital opportunities.
+                </p>
+<div class="mt-6 flex items-center space-x-4">
+<div class="flex -space-x-2">
+<img alt="Team 1" class="w-8 h-8 rounded-full border-2 border-background-dark" data-alt="Profile photo of a professional woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtQY4wszCWTQJvYsW9521LkbJ07klQlL2JBVGdz-0og47eRCRjIojWW16LxkTqSXJ_iqZUTvrEy23XMpUk_RUINYHNmHlcK-Vmjvi2_zJcLkNjAb5CZreYynzyLJQMjcmGsrA8_tgRtB8gkFiIMh2Mo74ndotbdTv4JXrUCY_wQSFnMr2Ejb3T1EwYVyWExhN7vlGvrUuLsKsRYPCNy97L6DC1ZdrLoTOFWQqOSWgvokAOr6ctOUQU7WlzUFY2Q8uUmo55Tjmqse8"/>
+<img alt="Team 2" class="w-8 h-8 rounded-full border-2 border-background-dark" data-alt="Profile photo of a creative man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFJoWp2iSi49uLVMAru1uOFlGZLhRGze2GNmxG2Oq4ldK33MDHUNAZ4jUtJnI_KHwiqIs_pMzBC2kp5-L73RQ5_YQhz2FeyUTDy_CmbsMXU3EHICbkmLJ353fv1rRxF0d9JhHDYhkS9HjUK-RZQ9YwjC1cWymAkc6PZJ_yPkXlmj5yPYJzh2j1cRrfOJy3GB1hWbVlF8LBDZ-avUE9ZNwJq-yv2pX4zjn2VaCt4Oz2JYmN8awOPh3eO_YPw5rfNLYNa7VnNpgBgTg"/>
+<img alt="Team 3" class="w-8 h-8 rounded-full border-2 border-background-dark" data-alt="Profile photo of a female developer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzA85s3uZ4SCli-afVK7Ae-4F0ckUkQaPQ7SZnz9y_anxS_NSEb68YYCOiFZx0FBn_y-I2CHT9ecMxq40HRZcfIFA__rQb7lHtuSWI1RFCXDs138FYi7ieIwdFoKZkwZR6J5FcQJPv96CyHaPZLIbrRouYY16BAefz026O2k5TrmCDbxB-GS7WKILvG1qA9zIDRx-spwRv88Wr4UlXxsgjsT55b7sgjCeKuA7PLh8V3CgRUksXuwAUAAcxqm7I9tzbdF4eeZ6M_KU"/>
+</div>
+<span class="text-xs text-slate-400 font-medium">+20 digital experts</span>
+</div>
+</div>
+</section>
+<!-- Expertise Grid -->
+<section class="px-6 py-4">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-white">Our Expertise</h3>
+<button class="text-primary text-xs font-bold uppercase tracking-wider">View All</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Web Dev -->
+<div class="bg-background-light dark:bg-white/5 p-5 rounded-2xl border border-slate-200 dark:border-white/10 group transition-all active:scale-95">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons">code</span>
+</div>
+<h4 class="font-bold text-sm mb-1 text-white">Web Development</h4>
+<p class="text-[11px] text-slate-500 leading-normal">Responsive &amp; scalable architectures.</p>
+</div>
+<!-- App Dev -->
+<div class="bg-background-light dark:bg-white/5 p-5 rounded-2xl border border-slate-200 dark:border-white/10 group transition-all active:scale-95">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons">smartphone</span>
+</div>
+<h4 class="font-bold text-sm mb-1 text-white">App Development</h4>
+<p class="text-[11px] text-slate-500 leading-normal">Native iOS and Android solutions.</p>
+</div>
+<!-- SEO -->
+<div class="bg-background-light dark:bg-white/5 p-5 rounded-2xl border border-slate-200 dark:border-white/10 group transition-all active:scale-95">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons">trending_up</span>
+</div>
+<h4 class="font-bold text-sm mb-1 text-white">SEO Strategy</h4>
+<p class="text-[11px] text-slate-500 leading-normal">Data-driven organic growth hacking.</p>
+</div>
+<!-- Design -->
+<div class="bg-background-light dark:bg-white/5 p-5 rounded-2xl border border-slate-200 dark:border-white/10 group transition-all active:scale-95">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons">palette</span>
+</div>
+<h4 class="font-bold text-sm mb-1 text-white">UI/UX Design</h4>
+<p class="text-[11px] text-slate-500 leading-normal">User-centric digital experiences.</p>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="px-6 py-8">
+<div class="flex justify-between items-center bg-primary/10 rounded-2xl p-6 border border-primary/20">
+<div class="text-center">
+<div class="text-2xl font-black text-white">150+</div>
+<div class="text-[10px] text-primary font-bold uppercase tracking-wider">Clients</div>
+</div>
+<div class="w-px h-8 bg-primary/20"></div>
+<div class="text-center">
+<div class="text-2xl font-black text-white">12k</div>
+<div class="text-[10px] text-primary font-bold uppercase tracking-wider">Commits</div>
+</div>
+<div class="w-px h-8 bg-primary/20"></div>
+<div class="text-center">
+<div class="text-2xl font-black text-white">99%</div>
+<div class="text-[10px] text-primary font-bold uppercase tracking-wider">Rating</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (iOS) -->
+<nav class="fixed bottom-0 left-0 right-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-xl border-t border-slate-200 dark:border-white/5 px-8 pb-8 pt-3 z-50">
+<div class="max-w-md mx-auto flex items-center justify-between">
+<button class="flex flex-col items-center space-y-1 text-primary">
+<span class="material-icons">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center space-y-1 text-slate-400">
+<span class="material-icons">work_outline</span>
+<span class="text-[10px] font-bold">Work</span>
+</button>
+<button class="relative -top-6 flex items-center justify-center w-14 h-14 bg-primary rounded-full shadow-xl shadow-primary/40 border-4 border-background-dark text-white">
+<span class="material-icons text-3xl">add</span>
+</button>
+<button class="flex flex-col items-center space-y-1 text-slate-400">
+<span class="material-icons">grid_view</span>
+<span class="text-[10px] font-bold">Services</span>
+</button>
+<button class="flex flex-col items-center space-y-1 text-slate-400">
+<span class="material-icons">chat_bubble_outline</span>
+<span class="text-[10px] font-bold">Contact</span>
+</button>
+</div>
+</nav>
+<!-- iOS Home Indicator -->
+<div class="fixed bottom-1 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/20 rounded-full z-[60]"></div>
+</body></html>
