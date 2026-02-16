@@ -8,9 +8,40 @@ class PortfolioScreen extends StatefulWidget {
   State<PortfolioScreen> createState() => _PortfolioScreenState();
 }
 
-class _PortfolioScreenState extends State<PortfolioScreen> {
+class _PortfolioScreenState extends State<PortfolioScreen> with SingleTickerProviderStateMixin {
   int _selectedFilter = 0;
-  final List<String> _filters = ['All Projects', 'Web', 'Mobile', 'Design'];
+  final List<String> _filters = ['All', 'Web', 'Mobile', 'Branding', 'AI'];
+
+  late AnimationController _staggerController;
+
+  @override
+  void initState() {
+    super.initState();
+    _staggerController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    )..forward();
+  }
+
+  @override
+  void dispose() {
+    _staggerController.dispose();
+    super.dispose();
+  }
+
+  final List<Map<String, dynamic>> _projects = [
+    {'title': 'FinTech Dashboard', 'category': 'Web', 'accent': AppTheme.accentCyan, 'icon': Icons.dashboard_rounded},
+    {'title': 'HealthSync App', 'category': 'Mobile', 'accent': AppTheme.accentEmerald, 'icon': Icons.favorite_rounded},
+    {'title': 'NovaBrand Identity', 'category': 'Branding', 'accent': AppTheme.accentAmber, 'icon': Icons.brush_rounded},
+    {'title': 'AI Analytics Suite', 'category': 'AI', 'accent': AppTheme.accentMagenta, 'icon': Icons.auto_awesome_rounded},
+    {'title': 'E-Commerce Platform', 'category': 'Web', 'accent': AppTheme.primary, 'icon': Icons.shopping_bag_rounded},
+    {'title': 'Travel Companion', 'category': 'Mobile', 'accent': AppTheme.accentRose, 'icon': Icons.flight_rounded},
+  ];
+
+  List<Map<String, dynamic>> get _filtered {
+    if (_selectedFilter == 0) return _projects;
+    return _projects.where((p) => p['category'] == _filters[_selectedFilter]).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +50,12 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         _buildHeader(),
         Expanded(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             child: Column(
               children: [
-                _buildProjectGrid(),
-                const SizedBox(height: 100),
+                _buildGrid(),
+                const SizedBox(height: 120),
               ],
             ),
           ),
@@ -33,101 +65,74 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   }
 
   Widget _buildHeader() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+      decoration: BoxDecoration(
+        color: AppTheme.backgroundDark.withValues(alpha: 0.9),
+        border: Border(bottom: BorderSide(color: AppTheme.primary.withValues(alpha: 0.08))),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Our Work',
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: 30,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
-                  letterSpacing: -0.3,
+              ShaderMask(
+                shaderCallback: (bounds) => AppTheme.primaryGradient.createShader(bounds),
+                child: const Text(
+                  'Portfolio',
+                  style: TextStyle(fontFamily: 'Inter', fontSize: 28, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: -0.5),
                 ),
               ),
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: AppTheme.primary.withValues(alpha: 0.15),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.search,
-                      color: AppTheme.primary,
-                      size: 22,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: AppTheme.primary.withValues(alpha: 0.3),
-                        width: 2,
-                      ),
-                    ),
-                    child: ClipOval(
-                      child: Image.network(
-                        'https://lh3.googleusercontent.com/aida-public/AB6AXuAOE9QN0kC9VOToe5zlJ8WvCFZ1jNaEljtR-KH7PepfGceIRWQuMk--fKboz5U5qhb-7qD7RNCe3mybnjnwnsIIOUAdrQATVxa16fFG7poBKsuh-0XvcRifWJiDxdEzD-AeI2liJj7vmoNYwZgXWjvkIf-ZUt6td6f3ktKEQGGgzjYE8ukdntkWJyLHTnmFfT4eQjA9mS4gPZi5lB6V7sCWMz7xsLsJfU_-_2uNbvboBiyGoRiBjPbkXqeviT-Mr-juRQOKa-pe7WU',
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            Container(
-                          color: AppTheme.surfaceDark,
-                          child: const Icon(Icons.person,
-                              size: 18, color: AppTheme.textSlate400),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: AppTheme.primary.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppTheme.primary.withValues(alpha: 0.15)),
+                ),
+                child: const Icon(Icons.filter_list_rounded, color: AppTheme.primary, size: 18),
               ),
             ],
           ),
+          const SizedBox(height: 6),
+          const Text(
+            'Showcasing our finest work',
+            style: TextStyle(fontFamily: 'Inter', fontSize: 14, color: AppTheme.textSlate400),
+          ),
           const SizedBox(height: 16),
-          // Filter chips
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: List.generate(_filters.length, (index) {
-                final isSelected = _selectedFilter == index;
+              children: List.generate(_filters.length, (i) {
+                final sel = _selectedFilter == i;
                 return Padding(
-                  padding: const EdgeInsets.only(right: 12),
+                  padding: const EdgeInsets.only(right: 10),
                   child: GestureDetector(
-                    onTap: () => setState(() => _selectedFilter = index),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 10),
+                    onTap: () {
+                      setState(() => _selectedFilter = i);
+                      _staggerController.reset();
+                      _staggerController.forward();
+                    },
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeOutCubic,
+                      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
                       decoration: BoxDecoration(
-                        color: isSelected
-                            ? AppTheme.primary
-                            : AppTheme.surfaceDark,
+                        gradient: sel ? AppTheme.primaryGradient : null,
+                        color: sel ? null : AppTheme.surfaceDark,
                         borderRadius: BorderRadius.circular(999),
-                        border: isSelected
-                            ? null
-                            : Border.all(
-                                color: AppTheme.primary.withValues(alpha: 0.15),
-                              ),
+                        border: sel ? null : Border.all(color: AppTheme.borderDark),
+                        boxShadow: sel
+                            ? [BoxShadow(color: AppTheme.primary.withValues(alpha: 0.3), blurRadius: 12, offset: const Offset(0, 4))]
+                            : null,
                       ),
                       child: Text(
-                        _filters[index],
+                        _filters[i],
                         style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 13,
-                          fontWeight:
-                              isSelected ? FontWeight.w600 : FontWeight.w500,
-                          color: isSelected
-                              ? Colors.white
-                              : AppTheme.textSlate400,
+                          fontFamily: 'Inter', fontSize: 12,
+                          fontWeight: sel ? FontWeight.w700 : FontWeight.w500,
+                          color: sel ? Colors.white : AppTheme.textSlate400,
                         ),
                       ),
                     ),
@@ -141,147 +146,217 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     );
   }
 
-  Widget _buildProjectGrid() {
-    final projects = [
-      _ProjectData(
-        title: 'SwiftPay Global',
-        category: 'FINTECH APP',
-        color: const Color(0xFFD4C5A0),
-        secondaryColor: const Color(0xFFE8DCC4),
-      ),
-      _ProjectData(
-        title: 'DataPulse AI',
-        category: 'AI ANALYSIS',
-        color: const Color(0xFF2A5F5F),
-        secondaryColor: const Color(0xFF3A7070),
-      ),
-      _ProjectData(
-        title: 'Luxe Brand Identity',
-        category: 'DESIGN',
-        color: const Color(0xFFE8E0D0),
-        secondaryColor: const Color(0xFFF0EAE0),
-      ),
-      _ProjectData(
-        title: 'Zenith HR',
-        category: 'SAAS PLATFORM',
-        color: const Color(0xFF8FAFA0),
-        secondaryColor: const Color(0xFFA0C0B0),
-      ),
-      _ProjectData(
-        title: 'Nexus Market',
-        category: 'WEB & MOBILE',
-        color: const Color(0xFFE0D8CC),
-        secondaryColor: const Color(0xFFF0EAE0),
-      ),
-      _ProjectData(
-        title: 'VibeCheck Social',
-        category: 'CREATIVE DESIGN',
-        color: const Color(0xFFC0D0C0),
-        secondaryColor: const Color(0xFFD0E0D0),
-      ),
-    ];
+  Widget _buildGrid() {
+    final projects = _filtered;
+    if (projects.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 64),
+        child: Column(
+          children: [
+            Icon(Icons.work_off_rounded, size: 48, color: AppTheme.textSlate500.withValues(alpha: 0.5)),
+            const SizedBox(height: 16),
+            const Text('No projects in this category', style: TextStyle(fontFamily: 'Inter', fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.textSlate400)),
+          ],
+        ),
+      );
+    }
 
     return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: 16,
-        crossAxisSpacing: 16,
-        childAspectRatio: 0.72,
+        mainAxisSpacing: 14,
+        crossAxisSpacing: 14,
+        childAspectRatio: 0.82,
       ),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: projects.length,
-      itemBuilder: (context, index) {
-        return _buildProjectCard(projects[index]);
+      itemBuilder: (context, i) {
+        final delay = i * 0.12;
+        final fade = Tween<double>(begin: 0, end: 1).animate(
+          CurvedAnimation(parent: _staggerController, curve: Interval(delay.clamp(0.0, 0.7), (delay + 0.3).clamp(0.0, 1.0), curve: Curves.easeOut)),
+        );
+        final scale = Tween<double>(begin: 0.9, end: 1.0).animate(
+          CurvedAnimation(parent: _staggerController, curve: Interval(delay.clamp(0.0, 0.7), (delay + 0.3).clamp(0.0, 1.0), curve: Curves.easeOutBack)),
+        );
+
+        return AnimatedBuilder(
+          animation: _staggerController,
+          builder: (context, _) => Transform.scale(
+            scale: scale.value,
+            child: Opacity(
+              opacity: fade.value,
+              child: _buildProjectCard(projects[i]),
+            ),
+          ),
+        );
       },
     );
   }
 
-  Widget _buildProjectCard(_ProjectData project) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            project.color,
-            project.secondaryColor,
+  Widget _buildProjectCard(Map<String, dynamic> project) {
+    final accent = project['accent'] as Color;
+    return GestureDetector(
+      onTap: () => _showProjectDetail(project),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: AppTheme.surfaceGradient,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: accent.withValues(alpha: 0.12)),
+          boxShadow: [BoxShadow(color: accent.withValues(alpha: 0.06), blurRadius: 20, offset: const Offset(0, 8))],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Project visual area
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [accent.withValues(alpha: 0.15), accent.withValues(alpha: 0.05)],
+                  ),
+                ),
+                child: Stack(
+                  children: [
+                    // Decorative circle
+                    Positioned(
+                      right: -15, top: -15,
+                      child: Container(
+                        width: 60, height: 60,
+                        decoration: BoxDecoration(shape: BoxShape.circle, color: accent.withValues(alpha: 0.1)),
+                      ),
+                    ),
+                    Center(
+                      child: Icon(project['icon'] as IconData, size: 48, color: accent.withValues(alpha: 0.6)),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // Info
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    project['title'] as String,
+                    style: const TextStyle(fontFamily: 'Inter', fontSize: 14, fontWeight: FontWeight.w700, color: Colors.white),
+                    maxLines: 1, overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 6),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    decoration: BoxDecoration(
+                      color: accent.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      project['category'] as String,
+                      style: TextStyle(fontFamily: 'Inter', fontSize: 10, fontWeight: FontWeight.w600, color: accent),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
-      child: Stack(
-        children: [
-          // Center decoration element
-          Center(
-            child: Container(
-              width: 80,
-              height: 80,
+    );
+  }
+
+  void _showProjectDetail(Map<String, dynamic> project) {
+    final accent = project['accent'] as Color;
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (ctx) => Container(
+        padding: const EdgeInsets.all(28),
+        decoration: BoxDecoration(
+          color: AppTheme.surfaceDark,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+          border: Border.all(color: accent.withValues(alpha: 0.15)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(child: Container(width: 40, height: 4, decoration: BoxDecoration(color: AppTheme.textSlate600, borderRadius: BorderRadius.circular(2)))),
+            const SizedBox(height: 24),
+            // Visual area
+            Container(
+              height: 180,
+              width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(20),
+                gradient: LinearGradient(colors: [accent.withValues(alpha: 0.2), accent.withValues(alpha: 0.05)]),
               ),
-              child: Center(
-                child: Text(
-                  'PROJECT',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 9,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white.withValues(alpha: 0.6),
-                    letterSpacing: 1.5,
-                  ),
-                ),
-              ),
+              child: Center(child: Icon(project['icon'] as IconData, size: 72, color: accent.withValues(alpha: 0.5))),
             ),
-          ),
-          // Label at bottom
-          Positioned(
-            left: 16,
-            bottom: 16,
-            right: 16,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(color: accent.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
+              child: Text(project['category'] as String, style: TextStyle(fontFamily: 'Inter', fontSize: 11, fontWeight: FontWeight.w700, color: accent, letterSpacing: 1)),
+            ),
+            const SizedBox(height: 12),
+            Text(project['title'] as String, style: const TextStyle(fontFamily: 'Inter', fontSize: 24, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: -0.5)),
+            const SizedBox(height: 12),
+            const Text(
+              'A comprehensive solution designed with meticulous attention to detail, delivering exceptional user experiences and measurable business results.',
+              style: TextStyle(fontFamily: 'Inter', fontSize: 15, color: AppTheme.textSlate400, height: 1.7),
+            ),
+            const SizedBox(height: 20),
+            Row(
               children: [
-                Text(
-                  project.category,
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 10,
-                    fontWeight: FontWeight.w700,
-                    color: AppTheme.primary.withValues(alpha: 0.9),
-                    letterSpacing: 1.2,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  project.title,
-                  style: const TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                    color: Color(0xFF1A1A2E),
-                  ),
-                ),
+                _statPill('Timeline', '12 weeks', accent),
+                const SizedBox(width: 12),
+                _statPill('Team', '5 experts', accent),
+                const SizedBox(width: 12),
+                _statPill('ROI', '+240%', accent),
               ],
             ),
-          ),
-        ],
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity, height: 52,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [accent, AppTheme.primary]),
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [BoxShadow(color: accent.withValues(alpha: 0.3), blurRadius: 16, offset: const Offset(0, 6))],
+                ),
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent, shadowColor: Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
+                  child: const Text('View Case Study', style: TextStyle(fontFamily: 'Inter', fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white)),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }
-}
 
-class _ProjectData {
-  final String title;
-  final String category;
-  final Color color;
-  final Color secondaryColor;
-
-  _ProjectData({
-    required this.title,
-    required this.category,
-    required this.color,
-    required this.secondaryColor,
-  });
+  Widget _statPill(String label, String value, Color accent) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(color: accent.withValues(alpha: 0.08), borderRadius: BorderRadius.circular(12)),
+        child: Column(
+          children: [
+            Text(value, style: TextStyle(fontFamily: 'Inter', fontSize: 14, fontWeight: FontWeight.w800, color: accent)),
+            const SizedBox(height: 2),
+            Text(label, style: const TextStyle(fontFamily: 'Inter', fontSize: 10, color: AppTheme.textSlate400)),
+          ],
+        ),
+      ),
+    );
+  }
 }

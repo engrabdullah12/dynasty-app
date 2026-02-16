@@ -19,8 +19,8 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 10),
-    )..repeat(reverse: true);
+      duration: const Duration(seconds: 12),
+    )..repeat();
   }
 
   @override
@@ -33,65 +33,100 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Dark Base
-        Container(color: AppTheme.backgroundDark),
-        
-        // Animated Gradient Orbs
+        // Deep dark base
+        Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFF06080F),
+                Color(0xFF0B0F1A),
+                Color(0xFF100A20),
+                Color(0xFF06080F),
+              ],
+              stops: [0.0, 0.3, 0.7, 1.0],
+            ),
+          ),
+        ),
+        // Animated orbs
         AnimatedBuilder(
           animation: _controller,
           builder: (context, child) {
             return CustomPaint(
-              painter: BackgroundPainter(_controller.value),
+              painter: _OrbPainter(_controller.value),
               size: Size.infinite,
             );
           },
         ),
-        
-        // Glass Overlay (optional strict blur, using backdrop filter in content instead usually)
-        // But here we just provide background.
-        
+        // Noise/grain overlay for premium feel
+        Container(
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment.center,
+              radius: 1.2,
+              colors: [
+                Colors.transparent,
+                AppTheme.backgroundDark.withValues(alpha: 0.4),
+              ],
+            ),
+          ),
+        ),
         widget.child,
       ],
     );
   }
 }
 
-class BackgroundPainter extends CustomPainter {
-  final double animationValue;
-
-  BackgroundPainter(this.animationValue);
+class _OrbPainter extends CustomPainter {
+  final double progress;
+  _OrbPainter(this.progress);
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..maskFilter = const MaskFilter.blur(BlurStyle.normal, 100);
+    final orbs = [
+      _Orb(
+        color: AppTheme.primary.withValues(alpha: 0.12),
+        radius: size.width * 0.5,
+        center: Offset(
+          size.width * 0.2 + sin(progress * 2 * pi) * size.width * 0.1,
+          size.height * 0.3 + cos(progress * 2 * pi) * size.height * 0.08,
+        ),
+      ),
+      _Orb(
+        color: AppTheme.accentMagenta.withValues(alpha: 0.08),
+        radius: size.width * 0.45,
+        center: Offset(
+          size.width * 0.8 + cos(progress * 2 * pi + 1) * size.width * 0.12,
+          size.height * 0.6 + sin(progress * 2 * pi + 1) * size.height * 0.1,
+        ),
+      ),
+      _Orb(
+        color: AppTheme.accentCyan.withValues(alpha: 0.06),
+        radius: size.width * 0.35,
+        center: Offset(
+          size.width * 0.5 + sin(progress * 2 * pi + 2) * size.width * 0.15,
+          size.height * 0.15 + cos(progress * 2 * pi + 2) * size.height * 0.05,
+        ),
+      ),
+    ];
 
-    // Orb 1: Primary Purple
-    final offset1 = Offset(
-      size.width * 0.2 + (50 * sin(animationValue * 2 * pi)),
-      size.height * 0.3 + (30 * cos(animationValue * 2 * pi)),
-    );
-    paint.color = AppTheme.primary.withOpacity(0.4);
-    canvas.drawCircle(offset1, 200, paint);
-
-    // Orb 2: Cyan/Secondary
-    final offset2 = Offset(
-      size.width * 0.8 - (40 * cos(animationValue * 2 * pi)),
-      size.height * 0.7 - (60 * sin(animationValue * 2 * pi)),
-    );
-    paint.color = AppTheme.accentCyan.withOpacity(0.3);
-    canvas.drawCircle(offset2, 180, paint);
-
-    // Orb 3: Another Purple
-    final offset3 = Offset(
-      size.width * 0.5 + (60 * cos(animationValue * pi)),
-      size.height * 0.5 + (40 * sin(animationValue * pi)),
-    );
-    paint.color = const Color(0xFF6A4CFF).withOpacity(0.2); // Lighter purple
-    canvas.drawCircle(offset3, 250, paint);
+    for (final orb in orbs) {
+      final paint = Paint()
+        ..color = orb.color
+        ..maskFilter = MaskFilter.blur(BlurStyle.normal, orb.radius * 0.6);
+      canvas.drawCircle(orb.center, orb.radius, paint);
+    }
   }
 
   @override
-  bool shouldRepaint(covariant BackgroundPainter oldDelegate) {
-    return oldDelegate.animationValue != animationValue;
-  }
+  bool shouldRepaint(covariant _OrbPainter oldDelegate) =>
+      oldDelegate.progress != progress;
+}
+
+class _Orb {
+  final Color color;
+  final double radius;
+  final Offset center;
+  const _Orb({required this.color, required this.radius, required this.center});
 }

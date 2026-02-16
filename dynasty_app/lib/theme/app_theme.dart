@@ -1,32 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // Core Colors
-  static const Color primary = Color(0xFF3617CF);
-  static const Color backgroundDark = Color(0xFF141121);
-  static const Color surfaceDark = Color(0xFF1C1830);
-  static const Color accentCyan = Color(0xFF00F5FF);
-  static const Color borderDark = Color(0xFF2D2A45);
+  // ─── NEW PREMIUM COLOR PALETTE ───
+  // Backgrounds
+  static const Color backgroundDark = Color(0xFF06080F);
+  static const Color backgroundDeep = Color(0xFF0B0F1A);
+  static const Color surfaceDark = Color(0xFF12172B);
+  static const Color surfaceLight = Color(0xFF1A2040);
+  static const Color cardDark = Color(0xFF151B33);
 
-  // Text Colors
-  static const Color textWhite = Color(0xFFFFFFFF);
-  static const Color textSlate100 = Color(0xFFF1F5F9);
+  // Primary gradient — Electric Violet to Hot Magenta
+  static const Color primary = Color(0xFF8B5CF6);
+  static const Color primaryLight = Color(0xFFA78BFA);
+  static const Color primaryDark = Color(0xFF7C3AED);
+
+  // Accents
+  static const Color accentMagenta = Color(0xFFEC4899);
+  static const Color accentCyan = Color(0xFF22D3EE);
+  static const Color accentAmber = Color(0xFFFBBF24);
+  static const Color accentEmerald = Color(0xFF34D399);
+  static const Color accentRose = Color(0xFFFB7185);
+
+  // Text
+  static const Color textWhite = Color(0xFFF8FAFC);
+  static const Color textSlate300 = Color(0xFFCBD5E1);
   static const Color textSlate400 = Color(0xFF94A3B8);
   static const Color textSlate500 = Color(0xFF64748B);
+  static const Color textSlate600 = Color(0xFF475569);
+
+  // Borders & Dividers
+  static const Color borderDark = Color(0xFF1E293B);
+  static const Color borderGlow = Color(0x338B5CF6);
+
+  // Gradients
+  static const LinearGradient primaryGradient = LinearGradient(
+    colors: [Color(0xFF8B5CF6), Color(0xFFEC4899)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient cyanGradient = LinearGradient(
+    colors: [Color(0xFF06B6D4), Color(0xFF8B5CF6)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient surfaceGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFF151B33), Color(0xFF0F1225)],
+  );
 
   static ThemeData get darkTheme {
     return ThemeData(
+      useMaterial3: true,
       brightness: Brightness.dark,
       scaffoldBackgroundColor: backgroundDark,
-      primaryColor: primary,
-      fontFamily: 'Inter',
       colorScheme: const ColorScheme.dark(
         primary: primary,
+        secondary: accentCyan,
         surface: surfaceDark,
-        onPrimary: textWhite,
-        onSurface: textSlate100,
+        error: accentRose,
+        onPrimary: Colors.white,
+        onSurface: textWhite,
       ),
+      fontFamily: 'Inter',
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -40,93 +78,35 @@ class AppTheme {
         ),
         iconTheme: IconThemeData(color: textWhite),
       ),
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 36,
-          fontWeight: FontWeight.w800,
-          color: textWhite,
-          letterSpacing: -0.5,
-          height: 1.1,
-        ),
-        headlineLarge: TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 30,
-          fontWeight: FontWeight.w800,
-          color: textWhite,
-          letterSpacing: -0.3,
-        ),
-        headlineMedium: TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 22,
-          fontWeight: FontWeight.w700,
-          color: textWhite,
-        ),
-        headlineSmall: TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-          color: textWhite,
-        ),
-        titleLarge: TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-          color: textWhite,
-        ),
-        titleMedium: TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 14,
-          fontWeight: FontWeight.w700,
-          color: textWhite,
-        ),
-        bodyLarge: TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
-          color: textSlate400,
-          height: 1.6,
-        ),
-        bodyMedium: TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 13,
-          fontWeight: FontWeight.w400,
-          color: textSlate400,
-          height: 1.5,
-        ),
-        bodySmall: TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 11,
-          fontWeight: FontWeight.w400,
-          color: textSlate500,
-          height: 1.4,
-        ),
-        labelSmall: TextStyle(
-          fontFamily: 'Inter',
-          fontSize: 10,
-          fontWeight: FontWeight.w700,
-          color: primary,
-          letterSpacing: 1.5,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: primary,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+          textStyle: const TextStyle(
+            fontFamily: 'Inter',
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: surfaceDark,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: primary, width: 2),
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: primary, width: 1.5),
         ),
         hintStyle: const TextStyle(
           fontFamily: 'Inter',
-          fontSize: 14,
           color: textSlate500,
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
